@@ -101,7 +101,12 @@ function Mathematics() {
                 viewBox="0 0 300 200"
               >
                 {[
-                  { text: "√(x²+1) = ?", y: 40, size: 16, opacity: 0.85 },
+                  {
+                    text: "√(x² + 1) + √(x² + 4) = 5",
+                    y: 40,
+                    size: 16,
+                    opacity: 0.85,
+                  },
                   { text: "∑ 1/n² = π²/6", y: 80, size: 16, opacity: 0.7 },
                   { text: "a² + b² = c²", y: 120, size: 14, opacity: 0.6 },
                   {
@@ -125,7 +130,7 @@ function Mathematics() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
                           duration: 0.5,
-                          delay: textIndex * 1 + i * 0.12, // avval qaysi qator, keyin har bir harf navbati bilan
+                          delay: textIndex * 1 + i * 0.12,
                         }}
                       >
                         {char}

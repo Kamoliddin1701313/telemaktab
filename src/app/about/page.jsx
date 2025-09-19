@@ -139,9 +139,13 @@ function About() {
               O‘quvchilar uchun eng yaxshi ta’limni birgalikda yarataylik!
             </p>
 
-            <button className="bg-[linear-gradient(135deg,#4f46e5,#3b82f6)] h-[48px] px-5 rounded-[25px] mt-5 cursor-pointer w-[160px] text-white text-[18px] mx-auto">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-[linear-gradient(135deg,#4f46e5,#3b82f6)] hover:bg-[linear-gradient(135deg,#3b82f6,#4f46e5)] transition duration-300 ease-in h-[48px] px-5 rounded-[25px] mt-5 cursor-pointer w-[160px] text-white text-[18px] mx-auto"
+            >
               Bog‘lanish
-            </button>
+            </motion.button>
           </motion.div>
         </div>
       </section>
