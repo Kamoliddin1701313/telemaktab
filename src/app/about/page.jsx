@@ -4,15 +4,48 @@ import team1 from "../../../public/images/team1.webp";
 import team2 from "../../../public/images/team2.webp";
 import team3 from "../../../public/images/team3.webp";
 import {
-  FaBookOpen,
   FaHandsHelping,
   FaLaptopCode,
   FaRocket,
   FaUsers,
 } from "react-icons/fa";
 import Image from "next/image";
+import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 function About() {
+  const items = useMemo(
+    () => [
+      {
+        icon: <FaUsers />,
+        title: "Professional jamoa",
+        desc: "O‘z sohasida tajribaga ega ustozlar.",
+      },
+      {
+        icon: <FaLaptopCode />,
+        title: "IT va Ta’lim",
+        desc: "Dasturlash, matematika va zamonaviy fanlar.",
+      },
+      {
+        icon: <FaRocket />,
+        title: "Kelajak kasblari",
+        desc: "O‘quvchilarni XXI asr ko‘nikmalariga tayyorlaymiz.",
+      },
+      {
+        icon: <FaHandsHelping />,
+        title: "Doimiy qo‘llab-quvvatlash",
+        desc: "Har bir o‘quvchiga individual yondashuv.",
+      },
+    ],
+    []
+  );
+
+  const router = useRouter();
+
+  const contactPageBtn = () => {
+    router.push("/contact");
+  };
+
   return (
     <div className="bg-[#F9F9F9]">
       <div className="bg-[linear-gradient(120deg,#1e3a8a,#3b82f6,#60a5fa)] rounded-b-[100px]">
@@ -55,30 +88,84 @@ function About() {
         </motion.p>
       </section>
 
+      <section className="max-w-[1280px] mx-auto pb-12 flex flex-col gap-3">
+        <div>
+          <p className="text-[20px] font-semibold text-[#374151]">
+            {" "}
+            ✨ Telemaktab — Bizning kurslarimiz
+          </p>
+          <p>
+            📚 Telemaktab sizga zamonaviy ta’lim muhitida o‘quvchilar uchun eng
+            kerakli fanlarni qulay va samarali shaklda o‘rganish imkonini taqdim
+            etadi. Bizning asosiy maqsadimiz — bolalarning bilimga bo‘lgan
+            qiziqishini kuchaytirish va ularni kelajakka tayyorlash.
+          </p>
+        </div>
+
+        <div>
+          <p> ✨ Ingliz tili</p>
+          <p>
+            🔹 Amaliy suhbatlar, interaktiv mashg‘ulotlar va zamonaviy
+            metodikalar.
+          </p>
+          <p>
+            🔹 Farzandingiz ingliz tilida erkin so‘zlashi va xalqaro
+            imtihonlarga tayyor bo‘lishi uchun mustahkam poydevor.
+          </p>
+        </div>
+
+        <div>
+          <p> ✨ Matematika</p>
+          <p>
+            🔹 Mantiqiy fikrlashni rivojlantirish va hisoblash ko‘nikmalarini
+            mustahkamlash.
+          </p>
+          <p>
+            🔹 O‘quvchilarni nafaqat maktab darslariga, balki olimpiadalar va
+            test imtihonlariga tayyorlash.
+          </p>
+        </div>
+
+        <div>
+          <p> ✨ Fizika</p>
+          <p>
+            🔹 Tajribalar va hayotiy misollar orqali fizikaning murakkab
+            tushunchalarini sodda va qiziqarli tarzda.
+          </p>
+          <p>
+            🔹 Farzandingiz ilm-fan olamiga qadam qo‘yadi va tabiat
+            qonuniyatlarini amalda bilib oladi.
+          </p>
+        </div>
+
+        <div>
+          <p> ✨ Rus tili</p>
+          <p>
+            🔹 To‘g‘ri talaffuz, grammatikani chuqur o‘rganish va suhbatlashish
+            ko‘nikmalarini shakllantirish.
+          </p>
+          <p>
+            🔹 O‘quvchilar rus tilida erkin muloqot qilishi va kitob
+            mutolaasidan zavq olishi uchun sharoit yaratiladi.
+          </p>
+        </div>
+
+        <div>
+          <p> 🌟 Telemaktabda har bir kurs:</p>
+          <p>1{")"} Interaktiv darslar</p>
+          <p>2{")"} Qiziqarli topshiriqlar</p>
+          <p>3{")"} Tajribali ustozlar</p>
+          <p>4{")"} Onlayn va oflayn qulayliklar bilan ta’minlangan.</p>
+          <p>
+            Biz bilan bilim sari qadam tashlang — kelajak sizning qo‘lingizda!
+            🚀
+          </p>
+        </div>
+      </section>
+
       <section className="bg-white py-15">
         <div className="flex items-center gap-5 max-w-[1280px] mx-auto">
-          {[
-            {
-              icon: <FaUsers />,
-              title: "Professional jamoa",
-              desc: "O‘z sohasida tajribaga ega ustozlar.",
-            },
-            {
-              icon: <FaLaptopCode />,
-              title: "IT va Ta’lim",
-              desc: "Dasturlash, matematika va zamonaviy fanlar.",
-            },
-            {
-              icon: <FaRocket />,
-              title: "Kelajak kasblari",
-              desc: "O‘quvchilarni XXI asr ko‘nikmalariga tayyorlaymiz.",
-            },
-            {
-              icon: <FaHandsHelping />,
-              title: "Doimiy qo‘llab-quvvatlash",
-              desc: "Har bir o‘quvchiga individual yondashuv.",
-            },
-          ].map((item, i) => (
+          {items?.map((item, i) => (
             <motion.div
               key={i}
               className="py-[32px] bg-[#000000c8] px-[24px] rounded-[20px] flex flex-col text-center shadow-[0px_4px_12px_rgba(0,0,0,0.06)] text-white"
@@ -140,9 +227,13 @@ function About() {
             </p>
 
             <motion.button
+              onClick={contactPageBtn}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
-              className="bg-[linear-gradient(135deg,#4f46e5,#3b82f6)] hover:bg-[linear-gradient(135deg,#3b82f6,#4f46e5)] transition duration-300 ease-in h-[48px] px-5 rounded-[25px] mt-5 cursor-pointer w-[160px] text-white text-[18px] mx-auto"
+              className="relative h-[48px] px-5 rounded-[25px] mt-5 cursor-pointer w-[160px] text-white text-[18px] mx-auto
+             bg-gradient-to-r from-indigo-600 to-blue-500
+             bg-[length:200%_200%] bg-left transition-all
+             hover:bg-right"
             >
               Bog‘lanish
             </motion.button>
@@ -154,3 +245,5 @@ function About() {
 }
 
 export default About;
+
+

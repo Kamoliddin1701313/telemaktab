@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FiSmartphone } from "react-icons/fi";
 import { GoGlobe } from "react-icons/go";
 import { PiLaptopDuotone } from "react-icons/pi";
@@ -8,106 +8,121 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 function Dashboard() {
-  const pageLink = [
-    {
-      id: 1,
-      name: "Matematika",
-      bg: "bg-red-600",
-      shadow: "#ff0000",
-      link: "mathematics",
-    },
-    {
-      id: 2,
-      name: "Fizika",
-      bg: "bg-teal-600",
-      shadow: "#008080",
-      link: "physics",
-    },
-    {
-      id: 3,
-      name: "Biologiya",
-      bg: "bg-[#d7d703ff]",
-      shadow: "#d7d703ff",
-      link: "biology",
-    },
-    {
-      id: 4,
-      name: "Kimyo",
-      bg: "bg-[#44339be8]",
-      shadow: "#44339be8",
-      link: "chemistry",
-    },
-    {
-      id: 5,
-      name: "Astronomiya Geografiya",
-      bg: "bg-blue-600",
-      shadow: "#0000ff",
-      link: "astronomy",
-    },
-    {
-      id: 6,
-      name: "Tarix",
-      bg: "bg-[#19b319]",
-      shadow: "#19b319",
-      link: "history",
-    },
-    {
-      id: 7,
-      name: "Ona tili Adabiyot",
-      bg: "bg-[#f63d5b]",
-      shadow: "#f63d5b",
-      link: "native-language",
-    },
-    {
-      id: 8,
-      name: "Chet tillar",
-      bg: "bg-[#fa7414f3]",
-      shadow: "#fa7414f3",
-      link: "foreign-languages",
-    },
-  ];
+  const pageLink = useMemo(
+    () => [
+      {
+        id: 1,
+        name: "Matematika",
+        bg: "bg-red-600",
+        shadow: "#ff0000",
+        link: "mathematics",
+      },
+      {
+        id: 2,
+        name: "Fizika",
+        bg: "bg-teal-600",
+        shadow: "#008080",
+        link: "physics",
+      },
+      {
+        id: 3,
+        name: "Biologiya",
+        bg: "bg-[#d7d703ff]",
+        shadow: "#d7d703ff",
+        link: "biology",
+      },
+      {
+        id: 4,
+        name: "Kimyo",
+        bg: "bg-[#44339be8]",
+        shadow: "#44339be8",
+        link: "chemistry",
+      },
+      {
+        id: 5,
+        name: "Astronomiya Geografiya",
+        bg: "bg-blue-600",
+        shadow: "#0000ff",
+        link: "astronomy",
+      },
+      {
+        id: 6,
+        name: "Tarix",
+        bg: "bg-[#19b319]",
+        shadow: "#19b319",
+        link: "history",
+      },
+      {
+        id: 7,
+        name: "Ona tili Adabiyot",
+        bg: "bg-[#f63d5b]",
+        shadow: "#f63d5b",
+        link: "native-language",
+      },
+      {
+        id: 8,
+        name: "Chet tillar",
+        bg: "bg-[#fa7414f3]",
+        shadow: "#fa7414f3",
+        link: "foreign-languages",
+      },
+    ],
+    []
+  );
 
   const route = useRouter();
 
-  const text = ["t", "e", "l", "e", "m", "a", "k", "t", "a", "b"];
+  const text = useMemo(
+    () => ["t", "e", "l", "e", "m", "a", "k", "t", "a", "b"],
+    []
+  );
 
-  const symbols = [
-    "√",
-    "∑",
-    "∫",
-    "π",
-    "∞",
-    "≈",
-    "≥",
-    "≤",
-    "∂",
-    "∆",
-    "θ",
-    "λ",
-    "σ",
-    "β",
-    "µ",
-    "φ",
-    "ψ",
-    "E=mc²",
-    "a²+b²=c²",
-  ];
+  const symbols = useMemo(
+    () => [
+      "√",
+      "∑",
+      "∫",
+      "π",
+      "∞",
+      "≈",
+      "≥",
+      "≤",
+      "∂",
+      "∆",
+      "θ",
+      "λ",
+      "σ",
+      "β",
+      "µ",
+      "φ",
+      "ψ",
+      "E=mc²",
+      "a²+b²=c²",
+    ],
+    []
+  );
 
   const [floating, setFloating] = useState([]);
 
+  const COUNT = 80;
+
+  const items = useMemo(
+    () =>
+      Array.from({ length: COUNT }).map(() => ({
+        id: Math.random().toString(36).slice(2, 9),
+        char: symbols[Math.floor(Math.random() * symbols.length)],
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        dur: 8 + Math.random() * 22,
+        delay: -Math.random() * 6,
+        scale: 0.8 + Math.random() * 1.8,
+        rot: -45 + Math.random() * 90,
+        opacity: 0.15 + Math.random() * 0.4,
+      })),
+    [symbols] // symbols o'zgarsa qayta hisoblanadi
+  );
+
   useEffect(() => {
-    const COUNT = 80;
-    const items = Array.from({ length: COUNT }).map(() => ({
-      id: Math.random().toString(36).slice(2, 9),
-      char: symbols[Math.floor(Math.random() * symbols.length)],
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      dur: 8 + Math.random() * 22,
-      delay: -Math.random() * 6,
-      scale: 0.8 + Math.random() * 1.8,
-      rot: -45 + Math.random() * 90,
-      opacity: 0.15 + Math.random() * 0.4,
-    }));
     setFloating(items);
   }, []);
 
@@ -155,7 +170,7 @@ function Dashboard() {
       <div className="flex bg-transparent justify-between items-center w-full max-w-[1280px] mx-auto mt-[8%]">
         <div className="flex flex-col gap-8">
           {pageLink?.slice(0, 4).map((value, index) => {
-            const delays = [0.1, 0.5, 1, 2]; // ketma-ket tushish kechikishlari
+            const delays = [0.1, 0.5, 1, 2];
 
             return (
               <motion.div
@@ -235,12 +250,29 @@ function Dashboard() {
             </motion.p>
           </div>
 
-          <div className="flex justify-between items-center gap-5">
+          <div className="flex justify-between gap-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
+            >
+              <div className="text-center">
+                <span>Biz bilan bog'laning</span>
+              </div>
+              <div className="flex flex-col gap-2 mt-3">
+                <a href="tel:+9989909557602">Tel : +998 90 955 76 02</a>
+                <a href="https://t.me/T_Zohidjon25" target="_blank">
+                  Telegram : Zohidjon
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0, duration: 1 }}
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
             >
               <div className="flex items-center justify-center gap-1.5">
                 <FiSmartphone className="text-[22px] text-blue-500" />
@@ -255,7 +287,7 @@ function Dashboard() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
             >
               <div className="flex items-center justify-center gap-1.5">
                 <PiLaptopDuotone className="text-[24px] text-blue-500" />
@@ -270,7 +302,7 @@ function Dashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
             >
               <div className="flex items-center justify-center gap-1.5">
                 <GoGlobe className="text-[22px] text-blue-500" />

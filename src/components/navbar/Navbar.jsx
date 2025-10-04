@@ -18,11 +18,6 @@ function Navbar() {
 
   const pathname = usePathname();
 
-  // const router = useRouter();
-  // const pageLinkButton = (link) => {
-  //   router.push(`/${link}`);
-  // };
-
   return (
     <div className="h-[60px] bg-[#0F1324] fixed z-10 w-full">
       <div className="max-w-[1280px] mx-auto h-full">
@@ -31,13 +26,13 @@ function Navbar() {
             const isActiveLink = pathname === `/${value.link}`;
             return (
               <Link
+                prefetch
                 href={`/${value.link}`}
-                // onClick={() => pageLinkButton(value.link)}
                 className={`${
                   isActiveLink
                     ? "border-[#00e5ff] border-b-[3px] text-[#00e5ff] bg-[#b6b6b640] rounded-[8px] navbarLink activeLink"
                     : "border-transparent navbarLink text-white"
-                } h-[40px] relative flex items-center border-b-[3px] pb-[3px] hover:bg-[#b6b6b640] duration-300 ease-in px-4 font-semibold cursor-pointer rounded-[8px] hover:border-white hover:navbarLink hover:text-[#00e5ff]`}
+                } h-[40px] relative flex items-center border-b-[3px] pb-[3px] hover:bg-[#b6b6b640] px-4 font-semibold cursor-pointer rounded-[8px] hover:border-[#00e5ff] hover:navbarLink hover:text-[#00e5ff]`}
                 key={index}
               >
                 {value?.name}

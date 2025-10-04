@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import teacher from "../../../public/images/professor-teacher.webp";
 
 import {
   FaBookOpen,
@@ -10,54 +11,99 @@ import {
   FaMicroscope,
   FaGlobe,
 } from "react-icons/fa";
-
-const classes = Array.from({ length: 12 }, (_, i) => ({
-  title: `${i + 1}-sinf`,
-  desc: `Matematika darslari: ${i + 1}-sinf uchun maxsus materiallar.`,
-  icon: <FaBookOpen />,
-}));
-
-const categories = [
-  {
-    title: "Olimpiada masalalari",
-    desc: "Qiyin va qiziqarli masalalar to‘plami.",
-    icon: <FaBolt />,
-  },
-  {
-    title: "Qiziqarli fizika",
-    desc: "O‘yinlar va noodatiy topshiriqlar.",
-    icon: <FaMagnet />,
-  },
-  {
-    title: "Fizika tarixi",
-    desc: "Buyuk matematiklar va ularning kashfiyotlari.",
-    icon: <FaAtom />,
-  },
-  {
-    title: "Olovli intervyular",
-    desc: "Matematika bo‘yicha motivatsion suhbatlar.",
-    icon: <FaMicroscope />,
-  },
-  {
-    title: "Yangiliklar",
-    desc: "So‘nggi ilmiy yangiliklar va tadbirlar.",
-    icon: <FaGlobe />,
-  },
-];
+import Image from "next/image";
+import { useMemo } from "react";
 
 function Physics() {
+  const classes = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        title: `${i + 1}-sinf`,
+        desc: `Matematika darslari: ${i + 1}-sinf uchun maxsus materiallar.`,
+        icon: <FaBookOpen />,
+      })),
+    []
+  );
+
+  const categories = useMemo(
+    () => [
+      {
+        title: "Olimpiada masalalari",
+        desc: "Qiyin va qiziqarli masalalar to‘plami.",
+        icon: <FaBolt />,
+      },
+      {
+        title: "Qiziqarli fizika",
+        desc: "O‘yinlar va noodatiy topshiriqlar.",
+        icon: <FaMagnet />,
+      },
+      {
+        title: "Fizika tarixi",
+        desc: "Buyuk matematiklar va ularning kashfiyotlari.",
+        icon: <FaAtom />,
+      },
+      {
+        title: "Olovli intervyular",
+        desc: "Matematika bo‘yicha motivatsion suhbatlar.",
+        icon: <FaMicroscope />,
+      },
+      {
+        title: "Yangiliklar",
+        desc: "So‘nggi ilmiy yangiliklar va tadbirlar.",
+        icon: <FaGlobe />,
+      },
+    ],
+    []
+  );
+
+  const animationText = useMemo(
+    () => [
+      {
+        text: "F = ma (Nyutonning 2-qonuni)",
+        y: 30,
+        size: 16,
+        opacity: 0.85,
+      },
+      {
+        text: "E = mc² (Einshteyn nisbiylik nazariyasi)",
+        y: 68,
+        size: 16,
+        opacity: 0.75,
+      },
+      {
+        text: "V = IR (Om qonuni)",
+        y: 108,
+        size: 14,
+        opacity: 0.65,
+      },
+      {
+        text: "pV = nRT (Ideal gaz tenglamasi)",
+        y: 148,
+        size: 14,
+        opacity: 0.55,
+      },
+      {
+        text: "λ = h / p (De Broyl to‘lqin uzunligi)",
+        y: 185,
+        size: 14,
+        opacity: 0.5,
+      },
+    ],
+    []
+  );
+
   return (
-    <div className="">
-      <div className="bg-[linear-gradient(180deg,#f6fbff_0%,#eef6ff_100%)]">
+    <div>
+      <div className="bg-[linear-gradient(180deg,#f6fbff_0%,#eef6ff_100%)] h-[500px]">
         <section className="max-w-[1280px] mx-auto">
-          <div className="flex items-start justify-between py-20 gap-10">
+          <div className="flex items-start justify-between pt-20 gap-6">
             <motion.div
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-5 relative"
               initial={{ x: -40, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-[44px] text-[#0f3b82] font-semibold leading-11">
+              <h1 className="text-[40px] text-[#0f3b82] font-semibold leading-11">
                 Fizika — tabiat qonunlari ilmi!
               </h1>
 
@@ -87,33 +133,50 @@ function Physics() {
                   </p>
                 </div>
               </div>
+
+              <Image
+                src={teacher}
+                alt="teacher"
+                width={280}
+                className="absolute -right-[5%] top-[40%]"
+              />
             </motion.div>
 
             <motion.div
-              className="w-2/5 bg-[#042018] p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)]"
+              className="w-3/5 bg-[#042018] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)]"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             >
               <svg
-                className="flex flex-col text-white gap-5"
-                viewBox="0 0 300 200"
+                className="flex flex-col text-white h-[280px]"
+                viewBox="0 0 350 200"
+                preserveAspectRatio="xMinYMin meet"
               >
-                <text x="10" y="40" fontSize="20" fill="rgba(255,255,255,0.85)">
-                  F=ma
-                </text>
-
-                <text x="10" y="80" fontSize="18" fill="rgba(255,255,255,0.7)">
-                  E=mc²
-                </text>
-
-                <text x="10" y="120" fontSize="18" fill="rgba(255,255,255,0.6)">
-                  V=IR
-                </text>
-
-                <text x="10" y="160" fontSize="16" fill="rgba(255,255,255,0.5)">
-                  λ = h/p
-                </text>
+                {animationText?.map((item, textIndex) => (
+                  <motion.text
+                    key={textIndex}
+                    x="10"
+                    y={item.y}
+                    fontSize={item.size}
+                    fill={`rgba(255,255,255,${item.opacity})`}
+                    textAnchor="start"
+                  >
+                    {item.text.split("").map((char, i) => (
+                      <motion.tspan
+                        key={i}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: textIndex * 1 + i * 0.12,
+                        }}
+                      >
+                        {char}
+                      </motion.tspan>
+                    ))}
+                  </motion.text>
+                ))}
               </svg>
             </motion.div>
           </div>
@@ -121,7 +184,7 @@ function Physics() {
       </div>
 
       {/* SINFLAR */}
-      <section className="max-w-[1280px] mx-auto py-16">
+      <section className="max-w-[1280px] mx-auto pt-8">
         <h2 className="text-[42px] text-[#0f3b82] font-medium text-center">
           Sinflar
         </h2>
@@ -130,7 +193,7 @@ function Physics() {
           {classes.map((c, i) => (
             <motion.div
               key={i}
-              className="my-8"
+              className="mt-6 mb-8"
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
@@ -153,7 +216,7 @@ function Physics() {
         <h2 className="text-[38px] text-[#0f3b82] font-semibold text-center">
           Asosiy yo‘nalishlar
         </h2>
-        <div className="grid grid-cols-5 justify-between mt-7 gap-3">
+        <div className="grid grid-cols-5 justify-between mt-10 gap-3">
           {categories.map((c, i) => (
             <motion.article
               key={i}

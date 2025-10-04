@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import teacher from "../../../public/images/teacher.png";
+import teacher1 from "../../../public/images/teacher.webp";
+import Image from "next/image";
 
 import {
   FaTrophy,
@@ -11,55 +12,92 @@ import {
   FaLightbulb,
   FaNewspaper,
 } from "react-icons/fa";
-import Image from "next/image";
-
-const classes = Array.from({ length: 12 }, (_, i) => ({
-  title: `${i + 1}-sinf`,
-  desc: `Matematika darslari: ${i + 1}-sinf uchun maxsus materiallar.`,
-  icon: <FaBookOpen />,
-}));
-
-const categories = [
-  {
-    title: "Olimpiada masalalari",
-    desc: "Qiyin va qiziqarli masalalar to‘plami.",
-    icon: <FaTrophy />,
-  },
-  {
-    title: "Qiziqarli matematika",
-    desc: "O‘yinlar va noodatiy topshiriqlar.",
-    icon: <FaLightbulb />,
-  },
-  {
-    title: "Matematika tarixi",
-    desc: "Buyuk matematiklar va ularning kashfiyotlari.",
-    icon: <FaHistory />,
-  },
-  {
-    title: "Olovli intervyular",
-    desc: "Matematika bo‘yicha motivatsion suhbatlar.",
-    icon: <FaFire />,
-  },
-  {
-    title: "Yangiliklar",
-    desc: "So‘nggi ilmiy yangiliklar va tadbirlar.",
-    icon: <FaNewspaper />,
-  },
-];
+import { useMemo } from "react";
 
 function Mathematics() {
+  const classes = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        title: `${i + 1}-sinf`,
+        desc: `Matematika darslari: ${i + 1}-sinf uchun maxsus materiallar.`,
+        icon: <FaBookOpen />,
+      })),
+    []
+  );
+
+  const categories = useMemo(
+    () => [
+      {
+        title: "Olimpiada masalalari",
+        desc: "Qiyin va qiziqarli masalalar to‘plami.",
+        icon: <FaTrophy />,
+      },
+      {
+        title: "Qiziqarli matematika",
+        desc: "O‘yinlar va noodatiy topshiriqlar.",
+        icon: <FaLightbulb />,
+      },
+      {
+        title: "Matematika tarixi",
+        desc: "Buyuk matematiklar va ularning kashfiyotlari.",
+        icon: <FaHistory />,
+      },
+      {
+        title: "Olovli intervyular",
+        desc: "Matematika bo‘yicha motivatsion suhbatlar.",
+        icon: <FaFire />,
+      },
+      {
+        title: "Yangiliklar",
+        desc: "So‘nggi ilmiy yangiliklar va tadbirlar.",
+        icon: <FaNewspaper />,
+      },
+    ],
+    []
+  );
+
+  const animationText = useMemo(
+    () => [
+      {
+        text: "√(x² + 1) + √(x² + 4) = 5",
+        y: 30,
+        size: 16,
+        opacity: 0.85,
+      },
+      {
+        text: "∑ (1/n²) from n=1 to ∞ = π²/6",
+        y: 70,
+        size: 16,
+        opacity: 0.7,
+      },
+      {
+        text: "E = mc²,   F = ma,   V = IR",
+        y: 110,
+        size: 14,
+        opacity: 0.6,
+      },
+      {
+        text: "f'(x) = lim h→0 ( f (x+h) - f (x) ) / h",
+        y: 150,
+        size: 14,
+        opacity: 0.5,
+      },
+    ],
+    []
+  );
+
   return (
     <div>
-      <div className="bg-[linear-gradient(180deg,#f6fbff_0%,#eef6ff_100%)]">
+      <div className="bg-[linear-gradient(180deg,#f6fbff_0%,#eef6ff_100%)] h-[500px]">
         <section className="max-w-[1280px] mx-auto">
-          <div className="flex items-start justify-between py-20 gap-10">
+          <div className="flex items-start justify-between pt-20 gap-6">
             <motion.div
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-5 relative"
               initial={{ x: -40, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-[44px] text-[#0f3b82] font-semibold leading-11">
+              <h1 className="text-[40px] text-[#0f3b82] font-semibold leading-11">
                 Matematika — tafakkur san’ati!
               </h1>
 
@@ -88,40 +126,35 @@ function Mathematics() {
                   </p>
                 </div>
               </div>
+
+              <Image
+                src={teacher1}
+                alt="teacher"
+                width={320}
+                // height={300}
+                className="absolute -right-[5%] top-[30%]"
+              />
             </motion.div>
 
             <motion.div
-              className="w-3/5 bg-[#042018] h-[350px] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)]"
+              className="w-3/5 bg-[#042018] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)]"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             >
               <svg
-                className="flex flex-col text-white gap-5"
-                viewBox="0 0 300 200"
+                className="flex flex-col text-white h-[280px]"
+                viewBox="0 0 350 200"
+                preserveAspectRatio="xMinYMin meet"
               >
-                {[
-                  {
-                    text: "√(x² + 1) + √(x² + 4) = 5",
-                    y: 40,
-                    size: 16,
-                    opacity: 0.85,
-                  },
-                  { text: "∑ 1/n² = π²/6", y: 80, size: 16, opacity: 0.7 },
-                  { text: "a² + b² = c²", y: 120, size: 14, opacity: 0.6 },
-                  {
-                    text: "f'(x) = lim h→0 (f(x+h)-f(x))/h",
-                    y: 160,
-                    size: 14,
-                    opacity: 0.5,
-                  },
-                ].map((item, textIndex) => (
+                {animationText?.map((item, textIndex) => (
                   <motion.text
                     key={textIndex}
                     x="10"
                     y={item.y}
                     fontSize={item.size}
                     fill={`rgba(255,255,255,${item.opacity})`}
+                    textAnchor="start"
                   >
                     {item.text.split("").map((char, i) => (
                       <motion.tspan
@@ -139,21 +172,13 @@ function Mathematics() {
                   </motion.text>
                 ))}
               </svg>
-
-              <Image
-                src={teacher}
-                alt="teacher"
-                width={250}
-                height={250}
-                className="absolute right-[3%] top-[20%]"
-              />
             </motion.div>
           </div>
         </section>
       </div>
 
       {/* SINFLAR */}
-      <section className="max-w-[1280px] mx-auto py-16">
+      <section className="max-w-[1280px] mx-auto pt-8">
         <h2 className="text-[42px] text-[#0f3b82] font-medium text-center">
           Sinflar
         </h2>
@@ -163,7 +188,7 @@ function Mathematics() {
           {classes.map((c, i) => (
             <motion.div
               key={i}
-              className="my-8"
+              className="mt-6 mb-8"
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
@@ -187,7 +212,7 @@ function Mathematics() {
         <h2 className="text-[38px] text-[#0f3b82] font-semibold text-center">
           Asosiy yo‘nalishlar
         </h2>
-        <div className="grid grid-cols-5 justify-between mt-7 gap-3">
+        <div className="grid grid-cols-5 justify-between mt-10 gap-3">
           {categories.map((c, i) => (
             <motion.article
               key={i}
