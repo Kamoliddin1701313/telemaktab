@@ -131,7 +131,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="w-full h-screen top-0 left-0 fixed bg-[#092F53] z-0 max-lg:static">
+    <div className="w-full h-screen top-0 left-0 fixed bg-[#092F53] z-0">
       <div className="">
         {floating?.map((value, index) => (
           <motion.div
