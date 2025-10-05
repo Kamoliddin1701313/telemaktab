@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-sm: 500px;
+  --breakpoint-md: 760px;
+  --breakpoint-lg: 1020px;
+  --breakpoint-xl: 1280px;
+
+  /* max-md:bg-red-600  shunday qilib berilar ekan tailwand css 4 da */
+}
+
 .box {
   animation-name: box;
   animation-duration: 3s;

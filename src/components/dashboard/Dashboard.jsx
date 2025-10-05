@@ -104,7 +104,7 @@ function Dashboard() {
 
   const [floating, setFloating] = useState([]);
 
-  const COUNT = 80;
+  const COUNT = 60;
 
   const items = useMemo(
     () =>
@@ -131,44 +131,47 @@ function Dashboard() {
   };
 
   return (
-    <div className="w-full h-screen top-0 left-0 fixed bg-[#092F53] z-0">
-      {floating?.map((value, index) => (
-        <motion.div
-          key={value.id} // id ishlatish yaxshiroq
-          style={{
-            left: `${value.left}%`,
-            top: `${value.top}%`,
-            fontSize: `${10 + value.scale * 20}px`,
-            opacity: value.opacity,
-            transform: `rotate(${value.rot}deg)`,
-            position: "absolute",
-            color: `rgba(255, 255, 255, ${value.opacity})`,
-            textShadow: `
+    <div className="w-full h-screen top-0 left-0 fixed bg-[#092F53] z-0 max-lg:static">
+      <div className="">
+        {floating?.map((value, index) => (
+          <motion.div
+            key={value.id} // id ishlatish yaxshiroq
+            style={{
+              left: `${value.left}%`,
+              top: `${value.top}%`,
+              fontSize: `${value.scale * 20}px`,
+              opacity: value.opacity,
+              transform: `rotate(${value.rot}deg)`,
+              position: "absolute",
+              color: `rgba(255, 255, 255, ${value.opacity})`,
+              textShadow: `
         0 0 5px rgba(255, 255, 255, 0.227),
         0 0 10px rgba(255, 255, 255, 0.258),
         0 0 15px rgba(255, 255, 255, 0.288),
         0 0 20px rgba(0, 150, 255, 0.6)
       `,
-          }}
-          animate={{
-            x: [0, (Math.random() > 0.5 ? 1 : -1) * 200],
-            y: [0, (Math.random() > 0.5 ? 1 : -1) * 200],
-            rotate: [value.rot, value.rot + 360],
-          }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "mirror",
-            duration: value.dur,
-            ease: "easeInOut",
-            delay: value.delay,
-          }}
-        >
-          {value.char}
-        </motion.div>
-      ))}
+            }}
+            className="max-lg:!text-[20px]"
+            animate={{
+              x: [0, (Math.random() > 0.5 ? 1 : -1) * 200],
+              y: [0, (Math.random() > 0.5 ? 1 : -1) * 200],
+              rotate: [value.rot, value.rot + 360],
+            }}
+            transition={{
+              repeat: Infinity,
+              repeatType: "mirror",
+              duration: value.dur,
+              ease: "easeInOut",
+              delay: value.delay,
+            }}
+          >
+            {value.char}
+          </motion.div>
+        ))}
+      </div>
 
-      <div className="flex bg-transparent justify-between items-center w-full max-w-[1280px] mx-auto mt-[8%]">
-        <div className="flex flex-col gap-8">
+      <div className="flex bg-transparent justify-between items-start w-full max-w-[1280px] mx-auto mt-[8%] max-xl:px-5 max-xl:mt-[12%] max-lg:flex-col max-lg:items-center max-lg:gap-10 max-lg:mt-0">
+        <div className="flex flex-col gap-8 max-lg:order-2 max-lg:w-full max-lg:flex-row max-lg:flex-wrap max-lg:justify-center">
           {pageLink?.slice(0, 4).map((value, index) => {
             const delays = [0.1, 0.5, 1, 2];
 
@@ -185,7 +188,7 @@ function Dashboard() {
               >
                 <motion.button
                   onClick={() => linkPageButton(value.link)}
-                  className={`w-[110px] h-[110px] rounded-full cursor-pointer text-white flex items-center justify-center text-center px-2 leading-5 ${value.bg}`}
+                  className={`w-[110px] h-[110px] rounded-full cursor-pointer text-white flex items-center justify-center text-center px-2 leading-5 ${value.bg} max-xl:w-[100px] max-xl:h-[100px] max-xl:text-[14px]`}
                   animate={{
                     scale: [1, 1.15, 1],
                     boxShadow: [
@@ -207,7 +210,7 @@ function Dashboard() {
           })}
         </div>
 
-        <div className="w-[70%]">
+        <div className="w-[70%] max-lg:w-full max-lg:order-1">
           <div className="flex items-center mx-auto w-3/5">
             {text?.map((value, index) => {
               const delays = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
@@ -221,7 +224,7 @@ function Dashboard() {
                     ease: "easeOut",
                   }}
                   key={index}
-                  className="text-[72px] mx-auto font-bold uppercase bg-gradient-to-bl from-[#14c3f3] via-[#b3b3b39d] to-[#ecf801] bg-clip-text text-transparent"
+                  className="text-[72px] mx-auto font-bold uppercase bg-gradient-to-bl from-[#14c3f3] via-[#b3b3b39d] to-[#ecf801] bg-clip-text text-transparent max-xl:text-[52px]"
                 >
                   {value}
                 </motion.h1>
@@ -229,7 +232,7 @@ function Dashboard() {
             })}
           </div>
 
-          <div className="my-10">
+          <div className="my-10 max-xl:text-[16px] max-xl:text-center max-xl:leading-9">
             <motion.h3
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -250,17 +253,17 @@ function Dashboard() {
             </motion.p>
           </div>
 
-          <div className="flex justify-between gap-4">
+          <div className="flex justify-between gap-4 max-xl:gap-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4 max-xl:p-3.5"
             >
               <div className="text-center">
                 <span>Biz bilan bog'laning</span>
               </div>
-              <div className="flex flex-col gap-2 mt-3">
+              <div className="flex flex-col gap-2 mt-3 max-xl:text-[15px]">
                 <a href="tel:+9989909557602">Tel : +998 90 955 76 02</a>
                 <a href="https://t.me/T_Zohidjon25" target="_blank">
                   Telegram : Zohidjon
@@ -272,13 +275,13 @@ function Dashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4 max-xl:p-3.5"
             >
               <div className="flex items-center justify-center gap-1.5">
                 <FiSmartphone className="text-[22px] text-blue-500" />
                 <span>Raqamli ta’lim</span>
               </div>
-              <p className="text-center mt-3">
+              <p className="text-center mt-3 max-xl:text-[15px] max-xl:text-left">
                 Telefon va kompyuterdan foydali foydalanishni o‘rganadi.
               </p>
             </motion.div>
@@ -287,13 +290,13 @@ function Dashboard() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4 max-xl:p-3.5"
             >
               <div className="flex items-center justify-center gap-1.5">
                 <PiLaptopDuotone className="text-[24px] text-blue-500" />
                 <span>IT ko‘nikmalar</span>
               </div>
-              <p className="text-center mt-3">
+              <p className="text-center mt-3 max-xl:text-[15px] max-xl:text-left">
                 Kelajak kasblari — dasturlash va texnologiyalarni egallash.
               </p>
             </motion.div>
@@ -302,20 +305,20 @@ function Dashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4"
+              className="p-5 rounded-[20px] bg-[#0e4e8f] text-white w-1/4 max-xl:p-3.5"
             >
               <div className="flex items-center justify-center gap-1.5">
                 <GoGlobe className="text-[22px] text-blue-500" />
                 <span>Onlayn qulaylik</span>
               </div>
-              <p className="text-center mt-3">
+              <p className="text-center mt-3 max-xl:text-[15px] max-xl:text-left">
                 Uyda o‘tirib zamonaviy ta’lim olish imkoniyati.
               </p>
             </motion.div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 max-lg:order-3 max-lg:w-full max-lg:flex-row max-lg:flex-wrap max-lg:justify-center">
           {pageLink?.slice(4).map((value, index) => {
             const delays = [0.1, 0.5, 1, 2]; // ketma-ket tushish kechikishlari
 
@@ -332,7 +335,7 @@ function Dashboard() {
               >
                 <motion.button
                   onClick={() => linkPageButton(value.link)}
-                  className={`w-[110px] h-[110px] rounded-full cursor-pointer text-white flex items-center justify-center text-center px-2 leading-5 ${value.bg}`}
+                  className={`w-[110px] h-[110px] rounded-full cursor-pointer text-white flex items-center justify-center text-center px-2 leading-5 ${value.bg} max-xl:w-[100px] max-xl:h-[100px] max-xl:text-[14px]`}
                   animate={{
                     scale: [1, 1.15, 1],
                     boxShadow: [
