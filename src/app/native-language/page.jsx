@@ -11,9 +11,20 @@ import {
   FaPenFancy,
   FaStar,
 } from "react-icons/fa";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function NativeLanguage() {
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMd(window.innerWidth >= 768); // md breakpoint
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const classes = useMemo(
     () =>
       Array.from({ length: 12 }, (_, i) => ({
@@ -60,31 +71,31 @@ function NativeLanguage() {
       {
         text: "Alisher Navoiy — Chig‘atoy adabiy tili asoschisi",
         y: 25,
-        size: 16,
+        size: isMd ? 16 : 10,
         opacity: 0.85,
       },
       {
         text: "Ona tilimiz — turkiy tillar oilasiga mansub",
         y: 65,
-        size: 16,
+        size: isMd ? 16 : 10,
         opacity: 0.7,
       },
       {
         text: "Lotin yozuvi 1993-yildan boshlab joriy qilindi",
         y: 105,
-        size: 14,
+        size: isMd ? 14 : 10,
         opacity: 0.6,
       },
       {
         text: "Til — millatning ruhi va madaniyati aksidir",
         y: 145,
-        size: 14,
+        size: isMd ? 14 : 10,
         opacity: 0.5,
       },
       {
         text: "O‘zbek tili — davlat tili maqomini 1989-yilda oldi",
         y: 185,
-        size: 14,
+        size: isMd ? 14 : 10,
         opacity: 0.45,
       },
     ],
@@ -93,16 +104,16 @@ function NativeLanguage() {
 
   return (
     <div>
-      <div className="bg-[linear-gradient(180deg,#f6fbff_0%,#eef6ff_100%)] h-[500px]">
+      <div className="bg-[linear-gradient(180deg,#f6fbff_0%,#eef6ff_100%)] h-[500px] max-xl:px-5 max-lg:h-auto max-lg:min-h-[500px]">
         <section className="max-w-[1280px] mx-auto">
-          <div className="flex items-start justify-between py-20 gap-10">
+          <div className="flex items-start justify-between py-20 gap-6 max-lg:flex-col max-lg:py-10">
             <motion.div
               className="flex flex-col gap-5 relative"
               initial={{ x: -40, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-[40px] text-[#0f3b82] font-semibold leading-11">
+              <h1 className="text-[40px] text-[#0f3b82] font-semibold leading-11 max-xl:text-[32px] max-sm:leading-9 max-sm:text-[28px]">
                 Ona tili va Adabiyot — milliy merosimiz
               </h1>
 
@@ -137,12 +148,12 @@ function NativeLanguage() {
                 src={women}
                 alt="teacher"
                 width={220}
-                className="absolute -right-[5%] top-[45%]"
+                className="absolute -right-[5%] top-[30%] max-lg:top-[120%] max-lg:-left-[5%] max-md:-left-[16%] max-sm:hidden"
               />
             </motion.div>
 
             <motion.div
-              className="w-3/5 bg-[#042018] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)]"
+              className="w-3/5 bg-[#042018] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)] max-xl:w-2/5 max-lg:w-3/5 max-lg:ml-auto max-sm:w-full max-sm:overflow-hidden"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
@@ -183,39 +194,41 @@ function NativeLanguage() {
       </div>
 
       {/* SINFLAR */}
-      <section className="max-w-[1280px] mx-auto pt-8">
-        <h2 className="text-[38px] text-[#0f3b82] font-semibold text-center">
+      <section className="max-w-[1280px] mx-auto pt-8 max-xl:px-5">
+        <h2 className="text-[42px] text-[#0f3b82] font-medium text-center max-lg:text-[32px]">
           Sinflar
         </h2>
 
-        <div className="flex items-center justify-between">
-          {classes.map((c) => (
+        {/* salom */}
+        <div className="flex items-center justify-between max-lg:overflow-auto max-lg:gap-3">
+          {classes.map((c, i) => (
             <motion.div
-              key={c.title}
-              className="mt-6 mb-8"
+              key={i}
+              className="mt-6 mb-8 max-lg:my-4"
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
               <button
-                className="w-[80px] shadow-[0_0_20px_rgba(0,0,0,0.4),-5px_-5px_20px_rgba(51, 51, 51, 0.4)] h-[80px] hover:scale-105 bg-[#f5f5f5] cursor-pointer rounded-full
-                     border-[6px] border-[rgba(15,23,42,0.04)]
-                     transition-all duration-300 ease-in
-                     hover:border-[#83838377]
-                     hover:shadow-[inset_0_0_20px_rgba(0,0,0,0.3)]"
+                className="w-[80px] h-[80px] max-lg:w-[70px] max-lg:h-[70px] shadow-[0_0_20px_rgba(0,0,0,0.4),-5px_-5px_20px_rgba(51, 51, 51, 0.4)] hover:scale-105 bg-[#f5f5f5] cursor-pointer rounded-full
+               border-[6px] border-[rgba(15,23,42,0.04)]
+               transition-all duration-300 ease-in
+               hover:border-[#83838377]
+               hover:shadow-[inset_0_0_20px_rgba(0,0,0,0.3)]"
               >
                 {c.title}
               </button>
             </motion.div>
           ))}
         </div>
+        {/* salom */}
       </section>
 
       {/* ASOSIY YO‘NALISHLAR */}
-      <section className="max-w-[1280px] mx-auto pb-16">
-        <h2 className="text-[38px] text-[#0f3b82] font-semibold text-center">
+      <section className="max-w-[1280px] mx-auto pb-16 max-xl:px-5">
+        <h2 className="text-[38px] text-[#0f3b82] font-semibold text-center max-lg:text-[32px] max-lg:mt-3">
           Asosiy yo‘nalishlar
         </h2>
-        <div className="grid grid-cols-5 justify-between mt-10 gap-3">
+        <div className="grid grid-cols-5 justify-between mt-10 gap-3 max-lg:mt-8 max-xl:grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
           {categories.map((c, i) => (
             <motion.article
               key={i}

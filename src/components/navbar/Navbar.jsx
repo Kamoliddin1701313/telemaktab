@@ -49,6 +49,13 @@ function Navbar() {
           })}
         </div>
 
+        <Link
+          href="/"
+          className="hidden max-lg:block text-white cursor-pointer bg-[#b6b6b640] px-4 py-2 rounded-[8px]"
+        >
+          Bosh sahifa
+        </Link>
+
         <button
           onClick={menuBtn}
           className="hidden max-lg:block cursor-pointer ml-auto"
@@ -73,6 +80,7 @@ function Navbar() {
               <Link
                 prefetch
                 href={`/${value.link}`}
+                onClick={() => setOpenIcon(false)}
                 className={`${
                   isActiveLink
                     ? "border-[#00e5ff] border-b-[3px] text-[#00e5ff] bg-[#b6b6b640] rounded-[8px]"

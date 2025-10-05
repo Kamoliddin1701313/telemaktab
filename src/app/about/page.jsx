@@ -51,15 +51,15 @@ function About() {
       <div className="bg-[linear-gradient(120deg,#1e3a8a,#3b82f6,#60a5fa)] rounded-b-[100px]">
         <section className="max-w-[1280px] mx-auto py-12">
           <motion.div
-            className="flex flex-col gap-5 w-3/5 mx-auto"
+            className="flex flex-col gap-5 w-3/5 mx-auto max-md:w-4/5 max-sm:w-full max-sm:px-2.5"
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h1 className="text-[44px] font-semibold text-center text-white">
+            <h1 className="text-[44px] font-semibold text-center text-white max-xl:text-[38px]">
               Biz haqimizda
             </h1>
-            <p className="text-[24px] font-semibold text-center text-white leading-8">
+            <p className="text-[24px] font-semibold text-center text-white leading-8 max-xl:text-[20px] max-md:text-[18px]">
               Biz — zamonaviy ta’limni yoshlar hayotiga olib kirayotgan
               jamoamiz. Maqsadimiz — farzandlarimizni texnologiya va bilim
               orqali kelajakka yo‘naltirish.
@@ -88,10 +88,9 @@ function About() {
         </motion.p>
       </section>
 
-      <section className="max-w-[1280px] mx-auto pb-12 flex flex-col gap-3">
+      <section className="max-w-[1280px] mx-auto pb-12 flex flex-col gap-3 max-xl:px-5">
         <div>
           <p className="text-[20px] font-semibold text-[#374151]">
-            {" "}
             ✨ Telemaktab — Bizning kurslarimiz
           </p>
           <p>
@@ -164,7 +163,7 @@ function About() {
       </section>
 
       <section className="bg-white py-15">
-        <div className="flex items-center gap-5 max-w-[1280px] mx-auto">
+        <div className="grid grid-cols-4 items-stretch gap-5 max-w-[1280px] mx-auto max-xl:px-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
           {items?.map((item, i) => (
             <motion.div
               key={i}
@@ -182,11 +181,11 @@ function About() {
         </div>
       </section>
 
-      <section className="max-w-[1280px] mx-auto py-12 text-center">
+      <section className="max-w-[1280px] mx-auto py-12 text-center max-xl:px-5">
         <h2 className="text-[36px] font-bold text-[#1a237e] mb-3.5">
           Bizning jamoa
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
+        <div className="my-8 grid grid-cols-3 max-lg:grid-cols-2 gap-5 max-sm:grid-cols-1">
           {[
             { name: "Yahyo", role: "Founder & Mentor", img: team1 },
             { name: "Dilshod", role: "Frontend Developer", img: team2 },
