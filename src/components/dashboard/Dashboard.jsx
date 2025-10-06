@@ -119,7 +119,7 @@ function Dashboard() {
         rot: -45 + Math.random() * 90,
         opacity: 0.15 + Math.random() * 0.4,
       })),
-    [symbols] // symbols o'zgarsa qayta hisoblanadi
+    [symbols]
   );
 
   useEffect(() => {

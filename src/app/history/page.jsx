@@ -148,41 +148,43 @@ function History() {
             </motion.div>
 
             <motion.div
-              className="w-3/5 bg-[#042018] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)] max-xl:w-2/5 max-lg:w-3/5 max-lg:ml-auto max-sm:w-full max-sm:overflow-hidden"
+              className="w-3/5 bg-[#042018] relative p-3 rounded-[20px] shadow-[0_10px_30px_rgba(4,32,18,0.35)] max-xl:w-2/5 max-lg:w-3/5 max-lg:ml-auto max-sm:w-full max-lg:overflow-hidden"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             >
-              <svg
-                className="flex flex-col text-white h-[280px]"
-                viewBox="0 0 350 200"
-                preserveAspectRatio="xMinYMin meet"
-              >
-                {animationText?.map((item, textIndex) => (
-                  <motion.text
-                    key={textIndex}
-                    x="10"
-                    y={item.y}
-                    fontSize={item.size}
-                    fill={`rgba(255,255,255,${item.opacity})`}
-                    textAnchor="start"
-                  >
-                    {item.text.split("").map((char, i) => (
-                      <motion.tspan
-                        key={i}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.5,
-                          delay: textIndex * 1 + i * 0.12,
-                        }}
-                      >
-                        {char}
-                      </motion.tspan>
-                    ))}
-                  </motion.text>
-                ))}
-              </svg>
+              <div className="w-full max-md:overflow-hidden">
+                <svg
+                  className="flex flex-col text-white h-[280px]"
+                  viewBox="0 0 350 200"
+                  preserveAspectRatio="xMinYMin meet"
+                >
+                  {animationText?.map((item, textIndex) => (
+                    <motion.text
+                      key={textIndex}
+                      x="5"
+                      y={item.y}
+                      fontSize={item.size}
+                      fill={`rgba(255,255,255,${item.opacity})`}
+                      textAnchor="start"
+                    >
+                      {item.text.split("").map((char, i) => (
+                        <motion.tspan
+                          key={i}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            duration: 0.5,
+                            delay: textIndex * 1 + i * 0.12,
+                          }}
+                        >
+                          {char}
+                        </motion.tspan>
+                      ))}
+                    </motion.text>
+                  ))}
+                </svg>
+              </div>
             </motion.div>
           </div>
         </section>
